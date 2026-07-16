@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#13213c">
+<title>Cartilha SDR · Pode Prosperar</title>
+<style>
+:root{
+  --navy:#13213c; --navy2:#1d2f52; --gold:#c9a227; --gold-bg:#fbf6e8;
+  --grey-bg:#f2f4f8; --red:#b3402e; --red-bg:#fdf0ee; --ink:#2b2f38;
+  --muted:#6a707c; --line:#e2e5eb; --card:#ffffff; --bg:#f6f7fa;
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{margin:0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:var(--bg); color:var(--ink); font-size:15.5px; line-height:1.55; padding-bottom:76px}
+/* topo */
+header{position:sticky; top:0; z-index:20; background:var(--navy); color:#fff; padding:14px 18px 12px; box-shadow:0 2px 10px rgba(0,0,0,.18)}
+header .kicker{font-size:10px; letter-spacing:3px; color:var(--gold); font-weight:700}
+header h1{margin:2px 0 0; font-size:19px}
+header .sub{font-size:12px; color:#c8d0de; margin-top:1px}
+/* nav inferior */
+nav{position:fixed; bottom:0; left:0; right:0; z-index:30; background:#fff; border-top:1px solid var(--line); display:flex; padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1; border:0; background:none; padding:9px 2px 8px; font-size:10.5px; color:var(--muted); cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:3px; font-family:inherit}
+nav button .ico{font-size:19px; line-height:1}
+nav button.on{color:var(--navy); font-weight:700}
+nav button.on .ico{transform:scale(1.12)}
+/* páginas */
+main{max-width:760px; margin:0 auto; padding:16px 16px 30px}
+.page{display:none}
+.page.on{display:block; animation:fade .18s ease}
+@keyframes fade{from{opacity:0; transform:translateY(4px)}to{opacity:1; transform:none}}
+h2{font-size:20px; color:var(--navy); margin:6px 0 4px}
+h2 .bar{display:block; width:44px; height:3px; background:var(--gold); border-radius:2px; margin-top:6px}
+h3{font-size:16px; color:var(--navy); margin:22px 0 8px}
+p{margin:0 0 10px}
+.lead{color:#465060; font-size:15px; margin-bottom:14px}
+.card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 16px; margin-bottom:12px; box-shadow:0 1px 3px rgba(19,33,60,.05)}
+/* caixas */
+.fala{background:var(--grey-bg); border-left:4px solid var(--navy); border-radius:0 10px 10px 0; padding:10px 12px; margin:8px 0; font-style:italic; color:#1d2a45; white-space:pre-line}
+.acao{font-size:11px; letter-spacing:1px; color:#7a614a; text-transform:uppercase; margin:6px 0; font-weight:600}
+.why{background:var(--gold-bg); border-left:4px solid var(--gold); border-radius:0 10px 10px 0; padding:9px 12px; margin:8px 0 4px; font-size:13.5px}
+.why b{color:#8c6d14; font-size:10.5px; letter-spacing:1.5px; display:block; margin-bottom:2px}
+.alert{background:var(--red-bg); border-left:4px solid var(--red); border-radius:0 10px 10px 0; padding:9px 12px; margin:10px 0; font-size:13.5px}
+.alert b{color:var(--red); font-size:10.5px; letter-spacing:1.5px; display:block; margin-bottom:2px}
+/* acordeões */
+details{background:var(--card); border:1px solid var(--line); border-radius:14px; margin-bottom:10px; overflow:hidden}
+details summary{list-style:none; cursor:pointer; padding:13px 16px; font-weight:700; color:var(--navy); display:flex; justify-content:space-between; align-items:center; gap:10px; font-size:15px}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+"; color:var(--gold); font-size:20px; font-weight:700; flex-shrink:0}
+details[open] summary::after{content:"–"}
+details .body{padding:0 16px 14px}
+/* funil timeline */
+.et{display:flex; gap:12px; margin-bottom:0}
+.et .n{width:30px; flex-shrink:0; display:flex; flex-direction:column; align-items:center}
+.et .n .dot{width:30px; height:30px; border-radius:50%; background:var(--navy); color:#fff; font-weight:700; display:flex; align-items:center; justify-content:center; font-size:14px}
+.et .n .ln{flex:1; width:2px; background:var(--line); margin:4px 0}
+.et:last-child .n .ln{display:none}
+.et .bx{flex:1; padding-bottom:16px}
+.et .bx .tt{font-weight:700; color:var(--navy)}
+.et .bx .tm{font-size:12px; color:var(--gold); font-weight:700; text-transform:uppercase; letter-spacing:.5px}
+.et .bx .ds{font-size:13.5px; color:var(--muted)}
+/* botão copiar */
+.copy{display:inline-flex; align-items:center; gap:6px; border:1.5px solid var(--navy); color:var(--navy); background:#fff; border-radius:99px; padding:6px 14px; font-size:13px; font-weight:700; cursor:pointer; margin:2px 0 6px; font-family:inherit}
+.copy.ok{background:var(--navy); color:#fff}
+/* checklist */
+.chk{display:flex; align-items:flex-start; gap:10px; padding:10px 12px; background:var(--card); border:1px solid var(--line); border-radius:12px; margin-bottom:8px; cursor:pointer}
+.chk input{width:20px; height:20px; margin:1px 0 0; accent-color:var(--navy); flex-shrink:0}
+.chk.done span{text-decoration:line-through; color:var(--muted)}
+.chk span{font-size:14px}
+.prog{font-size:13px; color:var(--muted); margin:2px 0 12px}
+.reset{border:0; background:none; color:var(--red); font-size:13px; font-weight:700; cursor:pointer; padding:6px 0; font-family:inherit}
+/* tabelas */
+table{width:100%; border-collapse:collapse; font-size:13px; margin:8px 0 14px}
+th{background:var(--navy); color:#fff; text-align:left; padding:8px 9px; font-size:12px}
+td{padding:8px 9px; border-bottom:1px solid var(--line); vertical-align:top}
+tr:nth-child(even) td{background:#f5f6f9}
+/* busca */
+.search{width:100%; padding:11px 14px; border:1.5px solid var(--line); border-radius:12px; font-size:15px; margin-bottom:12px; font-family:inherit; background:#fff}
+.search:focus{outline:none; border-color:var(--navy)}
+.hide{display:none!important}
+.pill{display:inline-block; background:var(--gold-bg); color:#8c6d14; font-size:11px; font-weight:700; padding:3px 10px; border-radius:99px; margin-bottom:6px; letter-spacing:.5px}
+.toast{position:fixed; bottom:86px; left:50%; transform:translateX(-50%); background:var(--navy); color:#fff; padding:9px 18px; border-radius:99px; font-size:13.5px; z-index:50; opacity:0; transition:opacity .25s; pointer-events:none}
+.toast.on{opacity:1}
+@media(min-width:760px){
+  body{padding-bottom:0; padding-left:210px}
+  nav{top:0; bottom:auto; left:0; right:auto; width:210px; height:100vh; flex-direction:column; border-top:0; border-right:1px solid var(--line); padding-top:86px; justify-content:flex-start}
+  nav button{flex:0 0 auto; flex-direction:row; justify-content:flex-start; gap:12px; padding:13px 22px; font-size:14px}
+  header{padding-left:228px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="kicker">PODE PROSPERAR™</div>
+  <h1>Cartilha da SDR</h1>
+  <div class="sub">Funil Premium de Agendamento e Comparecimento</div>
+</header>
+
+<main>
+
+<!-- ============ INÍCIO ============ -->
+<section class="page on" id="pg-inicio">
+  <h2>Comece por aqui<span class="bar"></span></h2>
+  <p class="lead">Seu trabalho tem um único resultado que importa: <b>lead qualificado, agendado e presente na sessão.</b></p>
+
+  <div class="card">
+    <div class="pill">O NEGÓCIO</div>
+    <p>A Daniely Jones é agente financeira e atende <b>famílias brasileiras nos Estados Unidos</b>: patrimônio, proteção da família, aposentadoria e decisões financeiras no contexto americano.</p>
+    <p style="margin:0">A <b>Sessão Estratégica Privada</b> é uma reunião online e individual em que a Daniely analisa o cenário da família. A palavra <i>privada</i> comunica exclusividade — e exclusividade sustenta o funil inteiro.</p>
+  </div>
+
+  <div class="card">
+    <div class="pill">QUEM É O LEAD</div>
+    <p style="margin-bottom:6px"><b>Desconfiado por natureza.</b> Imigrantes são alvo frequente de golpes. Tom seguro vale mais que simpatia exagerada.</p>
+    <p style="margin-bottom:6px"><b>Rotina pesada.</b> Muitos têm mais de um emprego. Sua ligação: 4 a 7 minutos.</p>
+    <p style="margin-bottom:6px"><b>Decide em casal.</b> Por isso o script pergunta sobre o cônjuge.</p>
+    <p style="margin:0"><b>Não conhece o sistema americano.</b> Esse é o gancho: "oportunidades que muitas famílias desconhecem".</p>
+  </div>
+
+  <div class="alert"><b>VOCÊ NUNCA FAZ</b>Conselho ou opinião financeira · citar produtos, valores ou rentabilidade · prometer resultado · insistir mais de 2 vezes com quem disse não. Quem analisa e explica é a Daniely, na sessão.</div>
+
+  <h3>As 6 regras de ouro</h3>
+  <details><summary>1 · Velocidade: 5 minutos, não 50</summary><div class="body"><p style="margin:0">O lead está com o assunto na cabeça <b>agora</b>. Cada minuto que passa derruba a chance de contato. Ligar em até 5 minutos é a regra mais importante da operação.</p></div></details>
+  <details><summary>2 · Tom premium, sempre</summary><div class="body"><p style="margin:0">Calmo, seguro, sem pressa aparente. Você não implora pelo agendamento — oferece acesso a algo valioso. Frases curtas. Pausas depois das perguntas. Nada de gírias ou voz de telemarketing.</p></div></details>
+  <details><summary>3 · Quem pergunta, conduz</summary><div class="body"><p style="margin:0">Cada vez que você pergunta e <b>espera a resposta completa</b>, o lead se abre mais. Os "(aguardar)" do script são instrução literal: cale-se e ouça.</p></div></details>
+  <details><summary>4 · Escassez verdadeira</summary><div class="body"><p style="margin:0">Duas janelas de horário comunicam agenda cheia. Se o lead recusar as duas e você abrir a agenda inteira, a escassez vira encenação. Recusou? No máximo mais duas janelas de outro dia.</p></div></details>
+  <details><summary>5 · Confirmação é filtro, não burocracia</summary><div class="body"><p style="margin:0">O fluxo de confirmação separa quem vai comparecer de quem não vai, e protege a agenda da Daniely. Cumpra os tempos à risca: 3 horas antes, 90 minutos de espera, link 10 minutos antes.</p></div></details>
+  <details><summary>6 · Tudo registrado, na hora</summary><div class="body"><p style="margin:0">Cada contato entra no controle no momento em que acontece — não no fim do dia. Sem registro, ninguém sabe qual etapa do funil está vazando.</p></div></details>
+
+  <h3>Mapa do funil</h3>
+  <div class="card">
+    <div class="et"><div class="n"><div class="dot">1</div><div class="ln"></div></div><div class="bx"><div class="tm">Até 5 min após o formulário · ligação</div><div class="tt">Primeiro contato</div><div class="ds">Qualificar e agendar — aba "Ligação"</div></div></div>
+    <div class="et"><div class="n"><div class="dot">2</div><div class="ln"></div></div><div class="bx"><div class="tm">Imediatamente após agendar · WhatsApp</div><div class="tt">Convite oficial</div><div class="ds">Formalizar e gerar valor</div></div></div>
+    <div class="et"><div class="n"><div class="dot">3</div><div class="ln"></div></div><div class="bx"><div class="tm">3 horas antes · WhatsApp</div><div class="tt">Confirmação premium</div><div class="ds">Confirmar presença</div></div></div>
+    <div class="et"><div class="n"><div class="dot">4</div><div class="ln"></div></div><div class="bx"><div class="tm">~90 min sem resposta · WhatsApp</div><div class="tt">Sem confirmação</div><div class="ds">Liberar horário e abrir reagendamento</div></div></div>
+    <div class="et"><div class="n"><div class="dot">5</div><div class="ln"></div></div><div class="bx"><div class="tm">10 min antes · só confirmados</div><div class="tt">Envio do link</div><div class="ds">Garantir acesso</div></div></div>
+    <div class="et"><div class="n"><div class="dot">6</div><div class="ln"></div></div><div class="bx"><div class="tm">Logo após a ausência · WhatsApp</div><div class="tt">No-show</div><div class="ds">Reabrir conversa sem cobrança</div></div></div>
+    <div class="et"><div class="n"><div class="dot">7</div></div><div class="bx" style="padding-bottom:0"><div class="tm">24 horas depois · WhatsApp</div><div class="tt">Resgate</div><div class="ds">Reagendar</div></div></div>
+  </div>
+  <div class="alert"><b>PONTO DE QUEBRA MAIS COMUM</b>Enviar o link para quem não confirmou "para garantir". Isso destrói o filtro: o lead aprende que não precisa confirmar e o no-show dispara.</div>
+</section>
+
+<!-- ============ LIGAÇÃO ============ -->
+<section class="page" id="pg-ligacao">
+  <h2>A ligação, bloco a bloco<span class="bar"></span></h2>
+  <p class="lead">Oito blocos, cada um com uma função. Entendendo a função, você improvisa sem perder o trilho.</p>
+
+  <details open><summary>Bloco 1 — Abertura</summary><div class="body">
+    <div class="fala">"Olá [Nome], tudo bem? Aqui é a Isa, da equipe Pode Prosperar. Vi que você preencheu um dos nossos formulários sobre aposentadoria e planejamento financeiro nos Estados Unidos. Posso te fazer duas perguntas rápidas?"</div>
+    <div class="acao">→ Aguardar</div>
+    <div class="why"><b>POR QUÊ</b>Três coisas em 15 segundos: quem você é, por que liga e um pedido pequeno ("duas perguntas rápidas"). O pedido pequeno quase sempre recebe sim — e o primeiro sim abre a conversa.</div>
+  </div></details>
+
+  <details><summary>Bloco 2 — Motivação</summary><div class="body">
+    <div class="fala">"O que te motivou a preencher esse formulário hoje?"</div>
+    <div class="acao">→ Aguardar resposta completa</div>
+    <div class="why"><b>POR QUÊ</b>A resposta é ouro: o lead verbaliza a própria dor. Anote as palavras exatas que ele usar — você vai usá-las adiante.</div>
+  </div></details>
+
+  <details><summary>Bloco 3 — Prioridade</summary><div class="body">
+    <div class="fala">"Entendi. E hoje, o que mais te preocupa? Sua aposentadoria? A proteção da sua família? Ou não saber se está tomando as melhores decisões financeiras?"</div>
+    <div class="acao">→ Aguardar · depois: "Faz muito sentido."</div>
+    <div class="why"><b>POR QUÊ</b>As três opções cobrem as três dores do público. Forçar a escolha faz o lead priorizar — informação que a Daniely usa pra preparar a sessão.</div>
+  </div></details>
+
+  <details><summary>Bloco 4 — Ponte de valor</summary><div class="body">
+    <div class="fala">"O objetivo da nossa conversa é entender sua situação atual e mostrar oportunidades que muitas famílias brasileiras desconhecem. Por isso a Sessão Estratégica Privada com a Daniely Jones vai agregar muito valor para você."</div>
+    <div class="why"><b>POR QUÊ</b>A conversa vira convite. "Oportunidades que muitas famílias desconhecem" gera curiosidade sem prometer nada específico. E repare: é afirmação ("vai agregar"), não opinião ("acredito que"). Quem afirma transmite convicção.</div>
+  </div></details>
+
+  <details><summary>Bloco 5 — Compromisso</summary><div class="body">
+    <div class="fala">"Se a Daniely conseguir te mostrar algo que melhore sua situação financeira, você acredita que essa conversa vale a pena?"</div>
+    <div class="acao">→ Aguardar o SIM · depois: "Perfeito."</div>
+    <div class="why"><b>POR QUÊ</b>Micro-compromisso verbal: quem diz "sim, vale a pena" em voz alta tende a agir com coerência — comparecer vira questão pessoal. Resposta morna? Veja "Fora do script".</div>
+  </div></details>
+
+  <details><summary>Bloco 6 — Agendamento</summary><div class="body">
+    <div class="fala">"A Daniely possui duas disponibilidades: terça às 7 PM ou quarta às 8 PM. Qual funciona melhor para você?"</div>
+    <div class="acao">→ Aguardar · depois: "Excelente."</div>
+    <div class="why"><b>POR QUÊ</b>Alternativa dupla: a pergunta não é "quer agendar?", é "qual horário?". O sim já foi dado no bloco anterior.</div>
+  </div></details>
+
+  <details><summary>Bloco 7 — Cônjuge</summary><div class="body">
+    <div class="fala">"Você toma decisões financeiras sozinho(a) ou existe alguém importante que participa dessas decisões?"</div>
+    <div class="acao">→ Se houver cônjuge: "Perfeito. Nós sempre recomendamos que ambos participem, pois normalmente as melhores decisões familiares são tomadas em conjunto."</div>
+    <div class="why"><b>POR QUÊ</b>Sessão com o casal converte mais e evita o "preciso falar com meu marido/esposa" depois. A pergunta não assume que existe cônjuge — abre espaço sem constranger.</div>
+  </div></details>
+
+  <details><summary>Bloco 8 — Criar valor e encerrar</summary><div class="body">
+    <div class="fala">"De 0 a 10, qual a importância dessa conversa para você hoje?"</div>
+    <div class="acao">→ Se 8, 9 ou 10: "Excelente. Vou reservar esse horário exclusivamente para você."</div>
+    <div class="fala">"[Nome], sua Sessão Estratégica Privada foi confirmada com sucesso. Você receberá seu convite oficial em instantes. Vou te enviar o link de acesso pelo Zoom — você tem o aplicativo Zoom instalado?"</div>
+    <div class="acao">→ Se não tiver: orientar a baixar o app antes do dia da sessão</div>
+    <div class="fala">"Caso aconteça algum imprevisto, pedimos apenas que nos avise com antecedência para disponibilizarmos o horário para outra família. Afinal, a agenda da Daniely Jones é super concorrida."</div>
+    <div class="why"><b>POR QUÊ</b>A nota mede a temperatura e faz o lead se ouvir dizendo que a conversa importa. A checagem do Zoom elimina o no-show técnico. "Reservar exclusivamente", "outra família" e "agenda super concorrida" fecham com exclusividade e escassez. Nota 7 ou menos? Veja "Fora do script".</div>
+  </div></details>
+
+  <h3>Fora do script</h3>
+  <details><summary>Lead não atende</summary><div class="body">
+    <p>Não deixe recado na 1ª tentativa. Cadência: <b>2ª tentativa após 30 min, 3ª no fim do dia.</b> Nenhuma atendida? WhatsApp:</p>
+    <div class="fala">"Olá [Nome], tudo bem? Aqui é a Isa, da equipe Pode Prosperar. Você preencheu nosso formulário sobre planejamento financeiro nos EUA e tentei te ligar para entender melhor o que você procura. Qual o melhor horário para falarmos por 5 minutos?"</div>
+    <p style="margin:6px 0 0">Sem resposta em 24h: mais uma ligação + mensagem. Depois, lista de reativação semanal.</p>
+  </div></details>
+  <details><summary>Atendeu, mas não pode falar</summary><div class="body">
+    <div class="fala">"Sem problema, [Nome]. Consigo te ligar ainda hoje às [opção 1] ou às [opção 2]. Qual fica melhor?"</div>
+    <p style="margin:6px 0 0">Sempre duas opções, sempre no mesmo dia. "Te ligo amanhã" perde metade dos leads.</p>
+  </div></details>
+  <details><summary>Resposta morna no compromisso</summary><div class="body">
+    <p>"Depende", "talvez", "não sei". Não force o agendamento — investigue:</p>
+    <div class="fala">"Entendo. Me conta: o que precisaria acontecer nessa conversa para ela valer a pena para você?"</div>
+    <p style="margin:6px 0 0">A resposta revela a objeção real. Trate a objeção e só então volte ao agendamento. Agendamento morno vira no-show.</p>
+  </div></details>
+  <details><summary>Nota 7 ou menos no 0 a 10</summary><div class="body">
+    <div class="fala">"Obrigada pela sinceridade, [Nome]. O que faria essa nota subir para 9 ou 10?"</div>
+    <p>Ou o lead verbaliza a trava (e você trata), ou confirma que não é prioridade. No segundo caso, não confirme o agendamento:</p>
+    <div class="fala">"Pelo que você me disse, talvez faça mais sentido marcarmos quando esse assunto for prioridade para você. Posso te procurar em [30 dias]?"</div>
+    <p style="margin:6px 0 0">Registre como lead futuro. A agenda da Daniely é reservada para nota 8+.</p>
+  </div></details>
+  <details><summary>Quer saber o preço da sessão</summary><div class="body">
+    <div class="fala">"A Sessão Estratégica Privada não tem custo. A Daniely faz essa análise inicial porque é a forma de entender se e como ela consegue ajudar cada família."</div>
+  </div></details>
+  <details><summary>Agressivo ou sem perfil</summary><div class="body">
+    <p style="margin:0">Educação e saída rápida: "Entendo, [Nome]. Agradeço seu tempo e fico à disposição se fizer sentido no futuro." Registre o motivo. Não gaste energia onde não há fit.</p>
+  </div></details>
+</section>
+
+<!-- ============ MENSAGENS ============ -->
+<section class="page" id="pg-msgs">
+  <h2>Mensagens prontas<span class="bar"></span></h2>
+  <p class="lead">Toque em <b>Copiar</b>, cole no WhatsApp e substitua os campos entre colchetes.</p>
+
+  <div class="card">
+    <div class="pill">ETAPA 2 · CONVITE OFICIAL — IMEDIATAMENTE APÓS A LIGAÇÃO</div>
+    <div class="fala" id="m2">PARABÉNS.
+Sua Sessão Estratégica Privada foi reservada.
+
+Data: [data]
+Horário: [horário]
+
+A Daniely vai preparar sua sessão com base no que você compartilhou na nossa conversa.
+
+Equipe Pode Prosperar</div>
+    <button class="copy" data-t="m2">⧉ Copiar</button>
+    <div class="why"><b>POR QUÊ</b>Chegando em segundos, confirma profissionalismo e materializa o compromisso. Curta de propósito: antecipar o conteúdo da sessão mata a curiosidade — e a curiosidade é o que leva o lead a comparecer.</div>
+  </div>
+
+  <div class="card">
+    <div class="pill">ETAPA 3 · CONFIRMAÇÃO — 3 HORAS ANTES</div>
+    <div class="fala" id="m3">Olá [Nome].
+Hoje teremos sua Sessão Estratégica Privada às [horário].
+Como a Daniely prepara cada encontro antecipadamente, precisamos apenas confirmar sua presença.
+Podemos contar com você hoje?</div>
+    <button class="copy" data-t="m3">⧉ Copiar</button>
+    <div class="why"><b>POR QUÊ</b>"A Daniely prepara cada encontro antecipadamente" dá motivo legítimo à confirmação — soa cortesia, não cobrança.</div>
+  </div>
+
+  <div class="card">
+    <div class="pill">ETAPA 4 · SEM CONFIRMAÇÃO — APÓS ~90 MIN SEM RESPOSTA</div>
+    <div class="fala" id="m4">Olá [Nome].
+Como não recebemos sua confirmação, seu horário foi liberado para outra família da lista de espera.
+Sabemos que imprevistos acontecem.
+Quando desejar reagendar sua Sessão Estratégica Privada, teremos prazer em encontrar uma nova disponibilidade para você.
+Equipe Pode Prosperar</div>
+    <button class="copy" data-t="m4">⧉ Copiar</button>
+    <div class="why"><b>POR QUÊ</b>Liberar sem drama mantém a postura premium e costuma provocar resposta imediata de quem só esqueceu. Se responder "posso sim!", reative o horário se ainda estiver livre; senão, reagende.</div>
+  </div>
+
+  <div class="card">
+    <div class="pill">ETAPA 5 · LINK — 10 MIN ANTES, SÓ CONFIRMADOS</div>
+    <div class="fala" id="m5">Olá [Nome].
+Estamos prontos para receber você.
+Segue seu acesso:
+[LINK]
+Até já.</div>
+    <button class="copy" data-t="m5">⧉ Copiar</button>
+    <div class="why"><b>POR QUÊ</b>Link cedo demais se perde na conversa e facilita o "depois eu entro". Dez minutos antes, a única ação possível é clicar.</div>
+  </div>
+
+  <div class="card">
+    <div class="pill">ETAPA 6 · NO-SHOW — LOGO APÓS A AUSÊNCIA</div>
+    <div class="fala" id="m6">Olá [Nome].
+Sentimos sua falta hoje.
+Sua sessão foi preparada exclusivamente para você.
+Se desejar reagendar, teremos prazer em disponibilizar um novo horário.</div>
+    <button class="copy" data-t="m6">⧉ Copiar</button>
+    <div class="why"><b>POR QUÊ</b>Zero cobrança, zero culpa. "Preparada exclusivamente para você" aciona reciprocidade sem acusar. Sempre no mesmo dia.</div>
+  </div>
+
+  <div class="card">
+    <div class="pill">ETAPA 7 · RESGATE — 24 HORAS DEPOIS</div>
+    <div class="fala" id="m7">Olá [Nome].
+Ainda gostaria de receber as informações e estratégias que a Daniely separou para seu perfil?
+Tenho duas disponibilidades esta semana:
+[HORÁRIO 1]
+[HORÁRIO 2]
+Qual funciona melhor para você?</div>
+    <button class="copy" data-t="m7">⧉ Copiar</button>
+    <div class="why"><b>POR QUÊ</b>"Que a Daniely separou para seu perfil" lembra que existe algo pronto esperando. Sem resposta em 48h: lista de reativação. Máximo de 1 resgate por no-show — além disso queima a marca.</div>
+  </div>
+</section>
+
+<!-- ============ OBJEÇÕES ============ -->
+<section class="page" id="pg-obj">
+  <h2>Objeções<span class="bar"></span></h2>
+  <p class="lead">Regra geral: <b>acolher → reposicionar → devolver a pergunta de agendamento.</b> Nunca rebata. A objeção é um pedido de segurança, não um não.</p>
+  <input class="search" id="objSearch" type="search" placeholder="Buscar objeção... (ex: tempo, preço, cônjuge)">
+
+  <details class="obj-item" data-k="tempo ocupado corrido trabalho"><summary>"Não tenho tempo."</summary><div class="body">
+    <div class="fala">"Eu imagino, [Nome] — a maioria das famílias que a Daniely atende tem uma rotina puxada, e é exatamente por isso que a sessão é objetiva: em menos de uma hora você sai sabendo onde está e o que dá para melhorar. A Daniely tem horários à noite. Terça às 7 PM ou quarta às 8 PM, qual te atrapalha menos?"</div>
+    <div class="why"><b>TÁTICA</b>Falta de tempo quase sempre é falta de prioridade percebida. Reforce o valor, ofereça horário fora do expediente.</div>
+  </div></details>
+
+  <details class="obj-item" data-k="telefone explicar agora resumo previa"><summary>"Me explica por telefone mesmo."</summary><div class="body">
+    <div class="fala">"[Nome], quem faz essa análise é a Daniely — ela monta tudo com base no seu cenário, e isso eu não consigo te adiantar por aqui. O que eu consigo é garantir o seu horário com ela. Terça às 7 PM ou quarta às 8 PM, qual fica melhor?"</div>
+    <div class="why"><b>TÁTICA</b>Você não é a especialista — e dizer isso joga a seu favor: o valor está na sessão com a Daniely. Não ceda a "prévias"; elas reduzem o comparecimento.</div>
+  </div></details>
+
+  <details class="obj-item" data-k="preço custo custa valor pagar caro"><summary>"Quanto custa?"</summary><div class="body">
+    <div class="fala">"A Sessão Estratégica Privada não tem custo. É a forma da Daniely entender seu cenário e ver se e como consegue ajudar. Você só investe o seu tempo — e sai com clareza sobre a sua situação."</div>
+    <div class="why"><b>TÁTICA</b>Resposta direta, sem rodeio. Hesitação aqui soa como pegadinha.</div>
+  </div></details>
+
+  <details class="obj-item" data-k="whatsapp manda material pdf informações"><summary>"Manda as informações por WhatsApp."</summary><div class="body">
+    <div class="fala">"O convite oficial eu te envio sim. Agora, as estratégias em si não existem em PDF — elas dependem do seu cenário, e é isso que a Daniely monta na sessão. Por isso o encontro é tão valioso. Terça às 7 PM ou quarta às 8 PM?"</div>
+    <div class="why"><b>TÁTICA</b>"Manda por WhatsApp" costuma ser despedida educada. Devolver o agendamento revela se há interesse real.</div>
+  </div></details>
+
+  <details class="obj-item" data-k="marido esposa cônjuge esposo casal companheiro"><summary>"Preciso falar com meu marido / minha esposa."</summary><div class="body">
+    <div class="fala">"Perfeito — e a gente faz questão. As melhores decisões dessas são tomadas em conjunto, então o ideal é que vocês dois participem da sessão. Qual horário costuma funcionar para os dois: terça às 7 PM ou quarta às 8 PM?"</div>
+    <div class="why"><b>TÁTICA</b>Transforme a objeção em convite. O cônjuge deixa de ser barreira e vira participante.</div>
+  </div></details>
+
+  <details class="obj-item" data-k="pensar depois retorno vou ver"><summary>"Vou pensar e te retorno."</summary><div class="body">
+    <div class="fala">"Claro, [Nome]. Só me ajuda em uma coisa: o que exatamente você precisa pensar? Pergunto porque, se for alguma dúvida sobre a sessão, eu consigo esclarecer agora em um minuto."</div>
+    <div class="why"><b>TÁTICA</b>"Vou pensar" esconde a objeção real. A pergunta traz a trava à superfície — trate a trava, não o adiamento.</div>
+  </div></details>
+
+  <details class="obj-item" data-k="consultor contador assessor já tenho alguém cuida"><summary>"Já tenho quem cuida das minhas finanças."</summary><div class="body">
+    <div class="fala">"Que ótimo — isso já te coloca à frente da maioria. Nesse caso a sessão funciona como uma segunda opinião: se estiver tudo bem encaminhado, a Daniely confirma isso para você. E se houver alguma oportunidade que não foi olhada, melhor ainda. Uma segunda opinião sem custo faz sentido?"</div>
+    <div class="why"><b>TÁTICA</b>Não ataque o profissional atual. Posicione como complemento, nunca substituição.</div>
+  </div></details>
+
+  <details class="obj-item" data-k="golpe desconfiança sério confiança segurança fraude"><summary>"Isso é golpe? Como sei que é sério?"</summary><div class="body">
+    <div class="fala">"Sua cautela está certíssima, [Nome] — infelizmente tem muita coisa duvidosa por aí. Você pode conhecer o trabalho da Daniely no [Instagram/site] antes da sessão. E fica tranquilo: a sessão é uma análise do seu cenário, ninguém vai te pedir dados bancários nem qualquer pagamento."</div>
+    <div class="why"><b>TÁTICA</b>Valide a desconfiança em vez de se ofender. Prova social verificável + dizer claramente o que NÃO vai acontecer.</div>
+  </div></details>
+</section>
+
+<!-- ============ ROTINA ============ -->
+<section class="page" id="pg-rotina">
+  <h2>Rotina do dia<span class="bar"></span></h2>
+  <p class="prog" id="prog"></p>
+
+  <h3 style="margin-top:8px">Início do dia</h3>
+  <label class="chk"><input type="checkbox" data-c="a1"><span>Revisar as sessões de hoje e os horários de disparo de cada confirmação (3h antes)</span></label>
+  <label class="chk"><input type="checkbox" data-c="a2"><span>Verificar leads de ontem sem contato concluído</span></label>
+  <label class="chk"><input type="checkbox" data-c="a3"><span>Conferir disponibilidades da agenda da Daniely (próximos 7 dias)</span></label>
+  <label class="chk"><input type="checkbox" data-c="a4"><span>Checar respostas pendentes no WhatsApp (resgates, reagendamentos)</span></label>
+
+  <h3>Durante o dia</h3>
+  <label class="chk"><input type="checkbox" data-c="b1"><span>Ligar para todo lead novo em até 5 minutos do formulário</span></label>
+  <label class="chk"><input type="checkbox" data-c="b2"><span>Enviar convite oficial imediatamente após cada agendamento</span></label>
+  <label class="chk"><input type="checkbox" data-c="b3"><span>Disparar confirmações exatamente 3 horas antes de cada sessão</span></label>
+  <label class="chk"><input type="checkbox" data-c="b4"><span>Monitorar: 90 min sem resposta → mensagem de liberação (Etapa 4)</span></label>
+  <label class="chk"><input type="checkbox" data-c="b5"><span>Enviar link 10 minutos antes — somente confirmados</span></label>
+  <label class="chk"><input type="checkbox" data-c="b6"><span>Registrar cada contato no momento em que acontece</span></label>
+
+  <h3>Fim do dia</h3>
+  <label class="chk"><input type="checkbox" data-c="c1"><span>Mensagem de no-show para ausências do dia (Etapa 6)</span></label>
+  <label class="chk"><input type="checkbox" data-c="c2"><span>Programar resgates de 24h para amanhã (Etapa 7)</span></label>
+  <label class="chk"><input type="checkbox" data-c="c3"><span>Última tentativa do dia para leads não atendidos</span></label>
+  <label class="chk"><input type="checkbox" data-c="c4"><span>Atualizar números: recebidos, contatados, agendados, comparecimentos</span></label>
+
+  <button class="reset" id="resetChk">Limpar checklist de hoje</button>
+  <p style="font-size:12.5px; color:var(--muted); margin-top:4px">O checklist zera automaticamente a cada novo dia.</p>
+</section>
+
+<!-- ============ GUIA ============ -->
+<section class="page" id="pg-guia">
+  <h2>Guia da operação<span class="bar"></span></h2>
+
+  <h3 style="margin-top:8px">Métricas que você acompanha</h3>
+  <div class="card">
+    <table>
+      <tr><th>Métrica</th><th>Cálculo</th><th>Referência inicial*</th></tr>
+      <tr><td><b>Taxa de contato</b></td><td>Atenderam ÷ recebidos</td><td>60–80%</td></tr>
+      <tr><td><b>Taxa de agendamento</b></td><td>Agendados ÷ contatados</td><td>40–60%</td></tr>
+      <tr><td><b>Taxa de confirmação</b></td><td>Confirmados ÷ agendados</td><td>70–85%</td></tr>
+      <tr><td><b>Show rate</b></td><td>Compareceram ÷ confirmados</td><td>80%+</td></tr>
+    </table>
+    <p style="font-size:12.5px; color:var(--muted); margin:0">*Médias gerais de mercado para operações de SDR — direção inicial, não meta. Após 4-6 semanas, os números reais da Pode Prosperar viram a régua. E lembre: quanto maior a distância entre ligação e sessão, maior o no-show — sempre que possível, agende para dentro de 72 horas.</p>
+  </div>
+
+  <h3>Erros que derrubam o funil</h3>
+  <details><summary>Ligar horas depois do formulário</summary><div class="body"><p style="margin:0">Lead esfriou, não atende ou não lembra. A taxa de contato despenca.</p></div></details>
+  <details><summary>Ler o script em tom robótico</summary><div class="body"><p style="margin:0">Lead percebe e desliga. O script é trilho, não teleprompter.</p></div></details>
+  <details><summary>Pular o bloco do compromisso</summary><div class="body"><p style="margin:0">Agendamento sem convicção. O lead some na confirmação.</p></div></details>
+  <details><summary>Agendar nota 6 "para não perder"</summary><div class="body"><p style="margin:0">No-show quase certo e horário da Daniely desperdiçado.</p></div></details>
+  <details><summary>Explicar ou opinar sobre finanças</summary><div class="body"><p style="margin:0">Mata a curiosidade, derruba o comparecimento e cria risco para a operação.</p></div></details>
+  <details><summary>Enviar link para quem não confirmou</summary><div class="body"><p style="margin:0">Destrói o filtro de confirmação. O no-show vira regra.</p></div></details>
+  <details><summary>Abrir a agenda inteira após recusa</summary><div class="body"><p style="margin:0">A escassez vira encenação e o posicionamento premium quebra.</p></div></details>
+  <details><summary>Insistir 3, 4 vezes com quem disse não</summary><div class="body"><p style="margin:0">Queima a marca da Daniely na comunidade — que é pequena e conversa.</p></div></details>
+  <details><summary>Registrar só no fim do dia</summary><div class="body"><p style="margin:0">Dados imprecisos, follow-ups esquecidos, funil cego.</p></div></details>
+
+  <div class="card" style="margin-top:16px">
+    <p style="margin:0">Na dúvida em qualquer situação não coberta aqui, a direção é uma só: <b>proteja a experiência do lead e o tempo da Daniely.</b> Essas duas coisas sustentam o funil inteiro.</p>
+  </div>
+  <p style="text-align:center; font-size:12px; color:var(--muted); margin-top:18px">Cartilha da SDR · Funil Premium · Pode Prosperar™</p>
+</section>
+
+</main>
+
+<nav>
+  <button class="on" data-p="pg-inicio"><span class="ico">⌂</span>Início</button>
+  <button data-p="pg-ligacao"><span class="ico">☏</span>Ligação</button>
+  <button data-p="pg-msgs"><span class="ico">✉</span>Mensagens</button>
+  <button data-p="pg-obj"><span class="ico">⁇</span>Objeções</button>
+  <button data-p="pg-rotina"><span class="ico">✓</span>Rotina</button>
+  <button data-p="pg-guia"><span class="ico">▤</span>Guia</button>
+</nav>
+
+<div class="toast" id="toast">Mensagem copiada</div>
+
+<script>
+// navegação
+document.querySelectorAll('nav button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('nav button').forEach(x => x.classList.remove('on'));
+  document.querySelectorAll('.page').forEach(x => x.classList.remove('on'));
+  b.classList.add('on');
+  document.getElementById(b.dataset.p).classList.add('on');
+  window.scrollTo({top:0});
+}));
+
+// copiar
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('on');
+  setTimeout(() => t.classList.remove('on'), 1600);
+}
+document.querySelectorAll('.copy').forEach(b => b.addEventListener('click', () => {
+  const txt = document.getElementById(b.dataset.t).innerText;
+  const done = () => { b.classList.add('ok'); b.textContent = '✓ Copiado'; toast('Mensagem copiada — cole no WhatsApp');
+    setTimeout(() => { b.classList.remove('ok'); b.textContent = '⧉ Copiar'; }, 2000); };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(txt).then(done).catch(() => fallback(txt, done));
+  } else fallback(txt, done);
+}));
+function fallback(txt, done){
+  const ta = document.createElement('textarea');
+  ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); done(); } catch(e) { toast('Não foi possível copiar'); }
+  document.body.removeChild(ta);
+}
+
+// busca de objeções
+document.getElementById('objSearch').addEventListener('input', e => {
+  const q = e.target.value.toLowerCase().trim();
+  document.querySelectorAll('.obj-item').forEach(d => {
+    const hit = !q || d.textContent.toLowerCase().includes(q) || (d.dataset.k||'').includes(q);
+    d.classList.toggle('hide', !hit);
+  });
+});
+
+// checklist com reset diário
+const today = new Date().toISOString().slice(0,10);
+let store = {};
+try {
+  store = JSON.parse(localStorage.getItem('sdrchk') || '{}');
+  if (store.d !== today) store = { d: today, v: {} };
+} catch(e) { store = { d: today, v: {} }; }
+function saveStore(){ try { localStorage.setItem('sdrchk', JSON.stringify(store)); } catch(e){} }
+const boxes = document.querySelectorAll('.chk input');
+function updProg(){
+  const total = boxes.length;
+  const done = [...boxes].filter(b => b.checked).length;
+  document.getElementById('prog').textContent = done + ' de ' + total + ' tarefas concluídas hoje';
+}
+boxes.forEach(b => {
+  b.checked = !!(store.v && store.v[b.dataset.c]);
+  b.closest('.chk').classList.toggle('done', b.checked);
+  b.addEventListener('change', () => {
+    store.v[b.dataset.c] = b.checked; saveStore();
+    b.closest('.chk').classList.toggle('done', b.checked);
+    updProg();
+  });
+});
+document.getElementById('resetChk').addEventListener('click', () => {
+  store = { d: today, v: {} }; saveStore();
+  boxes.forEach(b => { b.checked = false; b.closest('.chk').classList.remove('done'); });
+  updProg();
+});
+updProg();
+</script>
+</body>
+</html>
