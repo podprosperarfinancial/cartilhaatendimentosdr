@@ -80,6 +80,11 @@ tr:nth-child(even) td{background:#f5f6f9}
 .search:focus{outline:none; border-color:var(--navy)}
 .hide{display:none!important}
 .pill{display:inline-block; background:var(--gold-bg); color:#8c6d14; font-size:11px; font-weight:700; padding:3px 10px; border-radius:99px; margin-bottom:6px; letter-spacing:.5px}
+.seg{display:flex; gap:6px; margin:4px 0 14px; background:#e9ecf2; border-radius:12px; padding:4px}
+.seg button{flex:1; border:0; border-radius:9px; padding:9px 4px; font-size:13px; font-weight:700; color:var(--muted); background:none; cursor:pointer; font-family:inherit}
+.seg button.on{background:var(--navy); color:#fff}
+.rt{display:none}
+.rt.on{display:block; animation:fade .18s ease}
 .toast{position:fixed; bottom:86px; left:50%; transform:translateX(-50%); background:var(--navy); color:#fff; padding:9px 18px; border-radius:99px; font-size:13.5px; z-index:50; opacity:0; transition:opacity .25s; pointer-events:none}
 .toast.on{opacity:1}
 @media(min-width:760px){
@@ -351,30 +356,110 @@ Qual funciona melhor para você?</div>
 <!-- ============ ROTINA ============ -->
 <section class="page" id="pg-rotina">
   <h2>Rotina do dia<span class="bar"></span></h2>
-  <p class="prog" id="prog"></p>
+  <div class="seg">
+    <button class="on" data-s="rt-isa">Isa · Dia</button>
+    <button data-s="rt-ana">Ana · Noite</button>
+    <button data-s="rt-troca">Troca de turno</button>
+  </div>
 
-  <h3 style="margin-top:8px">Início do dia</h3>
-  <label class="chk"><input type="checkbox" data-c="a1"><span>Revisar as sessões de hoje e os horários de disparo de cada confirmação (3h antes)</span></label>
-  <label class="chk"><input type="checkbox" data-c="a2"><span>Verificar leads de ontem sem contato concluído</span></label>
-  <label class="chk"><input type="checkbox" data-c="a3"><span>Conferir disponibilidades da agenda da Daniely (próximos 7 dias)</span></label>
-  <label class="chk"><input type="checkbox" data-c="a4"><span>Checar respostas pendentes no WhatsApp (resgates, reagendamentos)</span></label>
+  <!-- ISA -->
+  <div class="rt on" id="rt-isa">
+    <div class="pill">SDR DIA · 11H ÀS 17H (FLÓRIDA)</div>
+    <p class="prog" data-prog="rt-isa"></p>
 
-  <h3>Durante o dia</h3>
-  <label class="chk"><input type="checkbox" data-c="b1"><span>Ligar para todo lead novo em até 5 minutos do formulário</span></label>
-  <label class="chk"><input type="checkbox" data-c="b2"><span>Enviar convite oficial imediatamente após cada agendamento</span></label>
-  <label class="chk"><input type="checkbox" data-c="b3"><span>Disparar confirmações exatamente 3 horas antes de cada sessão</span></label>
-  <label class="chk"><input type="checkbox" data-c="b4"><span>Monitorar: 90 min sem resposta → mensagem de liberação (Etapa 4)</span></label>
-  <label class="chk"><input type="checkbox" data-c="b5"><span>Enviar link 10 minutos antes — somente confirmados</span></label>
-  <label class="chk"><input type="checkbox" data-c="b6"><span>Registrar cada contato no momento em que acontece</span></label>
+    <h3 style="margin-top:6px">11h — Abertura do dia</h3>
+    <label class="chk"><input type="checkbox" data-c="i1"><span>Confirmar todas as reuniões do dia (ligação e mensagem)</span></label>
+    <label class="chk"><input type="checkbox" data-c="i2"><span>Ver os leads que caíram — lead novo, ligação na hora</span></label>
 
-  <h3>Fim do dia</h3>
-  <label class="chk"><input type="checkbox" data-c="c1"><span>Mensagem de no-show para ausências do dia (Etapa 6)</span></label>
-  <label class="chk"><input type="checkbox" data-c="c2"><span>Programar resgates de 24h para amanhã (Etapa 7)</span></label>
-  <label class="chk"><input type="checkbox" data-c="c3"><span>Última tentativa do dia para leads não atendidos</span></label>
-  <label class="chk"><input type="checkbox" data-c="c4"><span>Atualizar números: recebidos, contatados, agendados, comparecimentos</span></label>
+    <h3>Durante a manhã</h3>
+    <label class="chk"><input type="checkbox" data-c="i3"><span>Acompanhar os novos leads que entram</span></label>
+    <label class="chk"><input type="checkbox" data-c="i4"><span>Responder as mensagens de quem vai retornando</span></label>
 
-  <button class="reset" id="resetChk">Limpar checklist de hoje</button>
-  <p style="font-size:12.5px; color:var(--muted); margin-top:4px">O checklist zera automaticamente a cada novo dia.</p>
+    <h3>12h30 — Janela do almoço</h3>
+    <label class="chk"><input type="checkbox" data-c="i5"><span>Ligações para os leads do tráfego (horário de almoço tem taxa de atendimento melhor)</span></label>
+
+    <h3>Durante a tarde</h3>
+    <label class="chk"><input type="checkbox" data-c="i6"><span>Follow-up dos leads em andamento</span></label>
+    <label class="chk"><input type="checkbox" data-c="i7"><span>Ligar para os leads de carreira</span></label>
+    <label class="chk"><input type="checkbox" data-c="i8"><span>Responder as mensagens que chegam</span></label>
+    <label class="chk"><input type="checkbox" data-c="i9"><span>Mensagem de retorno para quem não atendeu</span></label>
+
+    <h3>16h às 17h — Rodada final</h3>
+    <label class="chk"><input type="checkbox" data-c="i10"><span>Última rodada de ligações (fim de expediente, muitos conseguem atender)</span></label>
+
+    <h3>17h — Passagem para a Ana</h3>
+    <label class="chk"><input type="checkbox" data-c="i11"><span>Enviar a passagem de turno completa para a Ana (modelo na aba "Troca de turno")</span></label>
+
+    <button class="reset" data-r="rt-isa">Limpar checklist de hoje</button>
+    <p style="font-size:12.5px; color:var(--muted); margin-top:4px">O checklist zera automaticamente a cada novo dia.</p>
+  </div>
+
+  <!-- ANA -->
+  <div class="rt" id="rt-ana">
+    <div class="pill">SDR NOITE · 17H ÀS 20H (FLÓRIDA)</div>
+    <p style="font-size:13px; color:var(--muted); margin:0 0 8px">Objetivo: aproveitar o melhor horário de atendimento para falar com quem trabalha durante o dia.</p>
+    <p class="prog" data-prog="rt-ana"></p>
+
+    <h3 style="margin-top:6px">17h — Receber a passagem da Isa</h3>
+    <label class="chk"><input type="checkbox" data-c="n1"><span>Verificar: leads novos, leads sem contato, quem respondeu à tarde, follow-ups pendentes e agenda</span></label>
+
+    <h3>17h às 20h — Prioridades, nesta ordem</h3>
+    <label class="chk"><input type="checkbox" data-c="n2"><span><b>1.</b> Ligar sem parar: leads novos, tráfego, carreira, antigos e retomadas</span></label>
+    <label class="chk"><input type="checkbox" data-c="n3"><span><b>2.</b> Responder rapidamente quem retornar</span></label>
+    <label class="chk"><input type="checkbox" data-c="n4"><span><b>3.</b> Agendar reuniões</span></label>
+    <label class="chk"><input type="checkbox" data-c="n5"><span><b>4.</b> Fazer follow-up</span></label>
+    <label class="chk"><input type="checkbox" data-c="n6"><span><b>5.</b> Atualizar o CRM imediatamente após cada ligação: atendeu, não atendeu, caixa postal, WhatsApp enviado, interesse, sem interesse, reagendou, próxima ação</span></label>
+
+    <h3>Após cada contato — atualizar agenda</h3>
+    <label class="chk"><input type="checkbox" data-c="n7"><span>Dados completos, observações, melhor horário, objeções, interesse e próximo follow-up</span></label>
+
+    <h3>20h — Encerramento</h3>
+    <label class="chk"><input type="checkbox" data-c="n8"><span>Enviar o relatório do dia para a Dani (modelo abaixo)</span></label>
+
+    <div class="card" style="margin-top:10px">
+      <div class="pill">MODELO · RELATÓRIO DO DIA</div>
+      <div class="fala" id="mrel">RELATÓRIO DO DIA — [data]
+
+Ligações realizadas:
+Leads atendidos:
+Novos agendamentos:
+Follow-ups realizados:
+Clientes que responderam:
+Clientes sem retorno:
+Pendências:
+Observações importantes:</div>
+      <button class="copy" data-t="mrel">⧉ Copiar modelo</button>
+    </div>
+
+    <button class="reset" data-r="rt-ana">Limpar checklist de hoje</button>
+    <p style="font-size:12.5px; color:var(--muted); margin-top:4px">O checklist zera automaticamente a cada novo dia.</p>
+  </div>
+
+  <!-- TROCA DE TURNO -->
+  <div class="rt" id="rt-troca">
+    <div class="pill">FLUXO ISA → ANA · TODO DIA ÀS 17H</div>
+    <p style="font-size:13.5px; color:var(--muted); margin:4px 0 12px">O turno da noite só rende se a passagem for completa. Lead sem contexto é ligação desperdiçada.</p>
+
+    <div class="card">
+      <div class="et"><div class="n"><div class="dot">1</div><div class="ln"></div></div><div class="bx"><div class="tm">Isa · 11h às 17h</div><div class="tt">Organiza o dia</div><div class="ds">Confirma reuniões · atende novos leads imediatamente · faz os primeiros contatos · organiza agenda · atualiza CRM</div></div></div>
+      <div class="et"><div class="n"><div class="dot" style="background:var(--gold)">↓</div><div class="ln"></div></div><div class="bx"><div class="tm">17h · Passagem de turno</div><div class="tt">Isa envia a passagem completa</div><div class="ds">Leads novos · leads sem contato · quem respondeu à tarde · follow-ups pendentes · agenda</div></div></div>
+      <div class="et"><div class="n"><div class="dot">2</div></div><div class="bx" style="padding-bottom:0"><div class="tm">Ana · 17h às 20h</div><div class="tt">Assume e intensifica</div><div class="ds">Liga no horário de maior atendimento · faz follow-ups · agenda reuniões · atualiza CRM com todos os detalhes · envia o relatório final para a Dani</div></div></div>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <div class="pill">MODELO · PASSAGEM DE TURNO</div>
+      <div class="fala" id="mpass">PASSAGEM DE TURNO — [data]
+
+Leads novos (ligar primeiro):
+Leads sem contato:
+Responderam durante a tarde:
+Follow-ups pendentes:
+Agenda de hoje (reuniões confirmadas):
+Observações:</div>
+      <button class="copy" data-t="mpass">⧉ Copiar modelo</button>
+      <p style="font-size:12.5px; color:var(--muted); margin:6px 0 0">Isa: copia, preenche e envia no WhatsApp da Ana às 17h. Nenhuma linha em branco — se não tem pendência, escreve "nenhuma".</p>
+    </div>
+  </div>
 </section>
 
 <!-- ============ GUIA ============ -->
@@ -464,7 +549,15 @@ document.getElementById('objSearch').addEventListener('input', e => {
   });
 });
 
-// checklist com reset diário
+// seletor de rotina (Isa / Ana / Troca)
+document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.seg button').forEach(x => x.classList.remove('on'));
+  document.querySelectorAll('.rt').forEach(x => x.classList.remove('on'));
+  b.classList.add('on');
+  document.getElementById(b.dataset.s).classList.add('on');
+}));
+
+// checklist com reset diário (progresso separado por rotina)
 const today = new Date().toISOString().slice(0,10);
 let store = {};
 try {
@@ -474,9 +567,12 @@ try {
 function saveStore(){ try { localStorage.setItem('sdrchk', JSON.stringify(store)); } catch(e){} }
 const boxes = document.querySelectorAll('.chk input');
 function updProg(){
-  const total = boxes.length;
-  const done = [...boxes].filter(b => b.checked).length;
-  document.getElementById('prog').textContent = done + ' de ' + total + ' tarefas concluídas hoje';
+  document.querySelectorAll('[data-prog]').forEach(p => {
+    const wrap = document.getElementById(p.dataset.prog);
+    const bs = wrap.querySelectorAll('.chk input');
+    const done = [...bs].filter(b => b.checked).length;
+    p.textContent = done + ' de ' + bs.length + ' tarefas concluídas hoje';
+  });
 }
 boxes.forEach(b => {
   b.checked = !!(store.v && store.v[b.dataset.c]);
@@ -487,13 +583,15 @@ boxes.forEach(b => {
     updProg();
   });
 });
-document.getElementById('resetChk').addEventListener('click', () => {
-  store = { d: today, v: {} }; saveStore();
-  boxes.forEach(b => { b.checked = false; b.closest('.chk').classList.remove('done'); });
-  updProg();
-});
+document.querySelectorAll('.reset').forEach(r => r.addEventListener('click', () => {
+  const wrap = document.getElementById(r.dataset.r);
+  wrap.querySelectorAll('.chk input').forEach(b => {
+    b.checked = false; store.v[b.dataset.c] = false;
+    b.closest('.chk').classList.remove('done');
+  });
+  saveStore(); updProg();
+}));
 updProg();
 </script>
 </body>
 </html>
-                
