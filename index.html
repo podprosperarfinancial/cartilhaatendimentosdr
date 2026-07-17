@@ -21,7 +21,7 @@ header h1{margin:2px 0 0; font-size:19px}
 header .sub{font-size:12px; color:#c8d0de; margin-top:1px}
 /* nav inferior */
 nav{position:fixed; bottom:0; left:0; right:0; z-index:30; background:#fff; border-top:1px solid var(--line); display:flex; padding-bottom:env(safe-area-inset-bottom)}
-nav button{flex:1; border:0; background:none; padding:9px 2px 8px; font-size:10.5px; color:var(--muted); cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:3px; font-family:inherit}
+nav button{flex:1; border:0; background:none; padding:9px 1px 8px; font-size:9.5px; color:var(--muted); cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:3px; font-family:inherit}
 nav button .ico{font-size:19px; line-height:1}
 nav button.on{color:var(--navy); font-weight:700}
 nav button.on .ico{transform:scale(1.12)}
@@ -85,6 +85,14 @@ tr:nth-child(even) td{background:#f5f6f9}
 .seg button.on{background:var(--navy); color:#fff}
 .rt{display:none}
 .rt.on{display:block; animation:fade .18s ease}
+.fl{font-size:12.5px; font-weight:700; color:var(--navy); display:block; margin:12px 0 4px}
+.ff{display:block; width:100%; padding:10px 12px; border:1.5px solid var(--line); border-radius:10px; font-size:15px; font-family:inherit; background:#fff}
+.ff:focus{outline:none; border-color:var(--navy)}
+textarea.ff{min-height:64px; resize:vertical}
+.radios{display:flex; gap:8px; flex-wrap:wrap}
+.radios label{flex:1; min-width:100px; border:1.5px solid var(--line); border-radius:10px; padding:10px 8px; text-align:center; font-size:13.5px; font-weight:700; color:var(--muted); cursor:pointer}
+.radios input{display:none}
+.radios label.on{border-color:var(--navy); background:var(--navy); color:#fff}
 .toast{position:fixed; bottom:86px; left:50%; transform:translateX(-50%); background:var(--navy); color:#fff; padding:9px 18px; border-radius:99px; font-size:13.5px; z-index:50; opacity:0; transition:opacity .25s; pointer-events:none}
 .toast.on{opacity:1}
 @media(min-width:760px){
@@ -229,6 +237,64 @@ tr:nth-child(even) td{background:#f5f6f9}
   <details><summary>Agressivo ou sem perfil</summary><div class="body">
     <p style="margin:0">Educação e saída rápida: "Entendo, [Nome]. Agradeço seu tempo e fico à disposição se fizer sentido no futuro." Registre o motivo. Não gaste energia onde não há fit.</p>
   </div></details>
+
+</section>
+
+<!-- ============ FICHA DO LEAD ============ -->
+<section class="page" id="pg-ficha">
+  <h2>Ficha do lead<span class="bar"></span></h2>
+  <p class="lead">Todo lead qualificado — nos dois turnos — precisa ter esta ficha completa no CRM. Preencha durante a ligação, toque em <b>Copiar ficha preenchida</b> e cole no CRM.</p>
+
+  <div class="alert"><b>PONTO DE ATENÇÃO</b>Esta ficha NÃO fica salva aqui no app. Assim que terminar de preencher, copie e envie imediatamente pro processo interno (CRM/WhatsApp). Se fechar ou atualizar a página antes de copiar, os campos são apagados e as informações do lead se perdem.</div>
+
+  <div class="card">
+    <label class="fl" style="margin-top:0">Nome completo</label>
+    <input class="ff" id="f-nome" type="text" autocomplete="off">
+    <label class="fl">Data de nascimento</label>
+    <input class="ff" id="f-nasc" type="text" placeholder="dd/mm/aaaa" autocomplete="off">
+    <label class="fl">Estado onde mora</label>
+    <input class="ff" id="f-estado" type="text" autocomplete="off">
+    <label class="fl">Alguém participa da decisão? (nome e data de nascimento)</label>
+    <input class="ff" id="f-decisor" type="text" placeholder="se não houver, escreva: decide sozinho(a)" autocomplete="off">
+    <label class="fl">Valor que está disposto(a) a guardar por mês</label>
+    <input class="ff" id="f-valor" type="text" autocomplete="off">
+    <label class="fl">Maior interesse</label>
+    <div class="radios" id="f-interesse">
+      <label data-v="Proteção">Proteção</label>
+      <label data-v="Aposentadoria">Aposentadoria</label>
+      <label data-v="Os dois">Os dois</label>
+    </div>
+    <label class="fl">Perfil do cliente</label>
+    <textarea class="ff" id="f-perfil" placeholder="rotina, família, momento de vida, o que contou na ligação"></textarea>
+    <label class="fl">Objeções apresentadas</label>
+    <textarea class="ff" id="f-obj" placeholder="se não houve, escreva: nenhuma"></textarea>
+    <label class="fl">Próxima ação</label>
+    <input class="ff" id="f-acao" type="text" placeholder="ex.: sessão agendada quarta 8 PM / follow-up sexta" autocomplete="off">
+
+    <div style="display:flex; gap:10px; margin-top:14px; align-items:center">
+      <button class="copy" id="fichaCopy" style="flex:1; justify-content:center; padding:11px">⧉ Copiar ficha preenchida</button>
+      <button class="reset" id="fichaClear" style="padding:11px 8px">Limpar</button>
+    </div>
+    <div class="why" style="margin-top:12px"><b>POR QUÊ</b>Ficha completa é o que permite a Daniely preparar a sessão certa — e é o que faz o CRM valer alguma coisa. Lead sem data de nascimento, valor e interesse registrados é ligação que vai ter que ser refeita.</div>
+  </div>
+
+  <details>
+    <summary>Prefere o modelo em branco?</summary>
+    <div class="body">
+      <div class="fala" id="mficha">FICHA DO LEAD — [data]
+
+Nome completo:
+Data de nascimento:
+Estado onde mora:
+Alguém participa da decisão? (nome e data de nascimento):
+Valor que está disposto(a) a guardar por mês:
+Maior interesse: proteção ou aposentadoria?
+Perfil do cliente:
+Objeções apresentadas:
+Próxima ação:</div>
+      <button class="copy" data-t="mficha">⧉ Copiar modelo em branco</button>
+    </div>
+  </details>
 </section>
 
 <!-- ============ MENSAGENS ============ -->
@@ -304,6 +370,46 @@ Qual funciona melhor para você?</div>
     <button class="copy" data-t="m7">⧉ Copiar</button>
     <div class="why"><b>POR QUÊ</b>"Que a Daniely separou para seu perfil" lembra que existe algo pronto esperando. Sem resposta em 48h: lista de reativação. Máximo de 1 resgate por no-show — além disso queima a marca.</div>
   </div>
+
+</section>
+
+<!-- ============ INSTAGRAM ============ -->
+<section class="page" id="pg-insta">
+  <h2>Instagram · Novo seguidor<span class="bar"></span></h2>
+  <p class="lead">Fluxo da Isa, todo dia durante a manhã: seguidor novo recebe um presente, deixa e-mail e WhatsApp, e entra no CRM como lead.</p>
+
+  <div class="card">
+    <div class="et"><div class="n"><div class="dot">1</div><div class="ln"></div></div><div class="bx"><div class="tm">Instagram · voz da Dani</div><div class="tt">Novo seguidor recebe as boas-vindas</div><div class="ds">Mensagem 1, com o presente</div></div></div>
+    <div class="et"><div class="n"><div class="dot">2</div><div class="ln"></div></div><div class="bx"><div class="tm">Respondeu que quer</div><div class="tt">Captação</div><div class="ds">Mensagem 2: e-mail + WhatsApp + pergunta de qualificação</div></div></div>
+    <div class="et"><div class="n"><div class="dot">3</div><div class="ln"></div></div><div class="bx"><div class="tm">WhatsApp · voz da equipe</div><div class="tt">Entrega da planilha</div><div class="ds">Mensagem 3, com o link do presente</div></div></div>
+    <div class="et"><div class="n"><div class="dot">4</div></div><div class="bx" style="padding-bottom:0"><div class="tm">CRM</div><div class="tt">Registro completo</div><div class="ds">E-mail, WhatsApp, status "planilha enviada" e o que a pessoa respondeu</div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="pill">MENSAGEM 1 · BOAS-VINDAS COM PRESENTE</div>
+    <div class="fala" id="mig1">Olá [Nome], tudo bem? Seja muito bem-vinda(o), fico feliz com a sua presença aqui no meu perfil. E como gratidão é algo que eu gosto de praticar, quero começar te dando um presente: a minha planilha financeira, um jeito simples de começar a organizar as finanças da sua família e enxergar pra onde o dinheiro está indo. Você gostaria de receber?</div>
+    <button class="copy" data-t="mig1">⧉ Copiar</button>
+    <div class="acao">→ Aguardar a resposta</div>
+    <div class="why"><b>POR QUÊ</b>Entrega antes de pedir. A descrição promete exatamente o que a planilha é: um jeito simples de organizar e enxergar o dinheiro. Nunca prometa além do que o presente entrega. "Você gostaria de receber?" pede um sim pequeno, que abre a conversa. Mensagem na voz da Dani: se o seguidor puxar assunto pessoal ou técnico, não improvise. Responda neutro e leve pro WhatsApp.</div>
+  </div>
+
+  <div class="card">
+    <div class="pill">MENSAGEM 2 · APÓS O SIM — CAPTAÇÃO</div>
+    <div class="fala" id="mig2">Fico feliz que você queira! Me passa seu e-mail e seu WhatsApp que eu já providencio o envio. E me conta uma coisa: o que te trouxe até o meu perfil? Existe algo que você está buscando organizar ou conquistar nas suas finanças?</div>
+    <button class="copy" data-t="mig2">⧉ Copiar</button>
+    <div class="why"><b>POR QUÊ</b>O e-mail e o WhatsApp transformam seguidor em lead no CRM. E a pergunta "organizar ou conquistar" já começa a qualificação: a resposta vira material pra ficha do lead e contexto pra abordagem seguinte.</div>
+  </div>
+
+  <div class="card">
+    <div class="pill">MENSAGEM 3 · ENTREGA DO PRESENTE · WHATSAPP</div>
+    <div class="fala" id="mig3">Oi [Nome]! Aqui é a Isa, da equipe da Dani, do perfil PodProsperar. Seu presente chegou:
+
+https://docs.google.com/spreadsheets/d/1IXjHWoyvAmm7dIU64ZCOW3mdiInjapsV/edit?usp=sharing&amp;ouid=110922462069614784243&amp;rtpof=true&amp;sd=true
+
+É só fazer uma cópia e começar a preencher. Qualquer dúvida, me chama por aqui!</div>
+    <button class="copy" data-t="mig3">⧉ Copiar</button>
+    <div class="why"><b>POR QUÊ</b>A entrega acontece no WhatsApp de propósito: o lead entra no canal onde o funil inteiro roda, e o primeiro contato ali é um presente. Quando a ligação vier, o número já é conhecido e bem-vindo. Aqui a voz muda naturalmente pra equipe, apresentando a Isa. Após enviar: registrar no CRM o status "planilha enviada".</div>
+  </div>
 </section>
 
 <!-- ============ OBJEÇÕES ============ -->
@@ -369,11 +475,25 @@ Qual funciona melhor para você?</div>
 
     <h3 style="margin-top:6px">11h — Abertura do dia</h3>
     <label class="chk"><input type="checkbox" data-c="i1"><span>Confirmar todas as reuniões do dia (ligação e mensagem)</span></label>
+    <label class="chk"><input type="checkbox" data-c="i15"><span>Enviar pra Dani o status de confirmação de cada reunião do dia (modelo abaixo)</span></label>
     <label class="chk"><input type="checkbox" data-c="i2"><span>Ver os leads que caíram — lead novo, ligação na hora</span></label>
+
+    <div class="card" style="margin-top:4px">
+      <div class="pill">MODELO · CONFIRMAÇÕES DO DIA → DANI</div>
+      <div class="fala" id="mconf">CONFIRMAÇÕES DO DIA — [data]
+
+[Nome] — confirmada
+[Nome] — não confirmada
+[Nome] — aguardando retorno</div>
+      <button class="copy" data-t="mconf">⧉ Copiar modelo</button>
+      <p style="font-size:12.5px; color:var(--muted); margin:6px 0 0">Uma linha por reunião, sem texto extra. Se alguém confirmar ao longo do dia, avisar a Dani na hora: "Fulana confirmou agora".</p>
+    </div>
 
     <h3>Durante a manhã</h3>
     <label class="chk"><input type="checkbox" data-c="i3"><span>Acompanhar os novos leads que entram</span></label>
     <label class="chk"><input type="checkbox" data-c="i4"><span>Responder as mensagens de quem vai retornando</span></label>
+    <label class="chk"><input type="checkbox" data-c="i12"><span>Instagram: verificar novos seguidores e enviar a mensagem de boas-vindas com o presente (modelos na aba Instagram)</span></label>
+    <label class="chk"><input type="checkbox" data-c="i13"><span>Instagram: enviar a planilha pelo WhatsApp de quem respondeu e registrar no CRM — e-mail, WhatsApp e status "planilha enviada"</span></label>
 
     <h3>12h30 — Janela do almoço</h3>
     <label class="chk"><input type="checkbox" data-c="i5"><span>Ligações para os leads do tráfego (horário de almoço tem taxa de atendimento melhor)</span></label>
@@ -386,6 +506,7 @@ Qual funciona melhor para você?</div>
 
     <h3>16h às 17h — Rodada final</h3>
     <label class="chk"><input type="checkbox" data-c="i10"><span>Última rodada de ligações (fim de expediente, muitos conseguem atender)</span></label>
+    <label class="chk"><input type="checkbox" data-c="i14"><span>Ficha do lead completa no CRM para todo lead qualificado do turno (aba Ficha)</span></label>
 
     <h3>17h — Passagem para a Ana</h3>
     <label class="chk"><input type="checkbox" data-c="i11"><span>Enviar a passagem de turno completa para a Ana (modelo na aba "Troca de turno")</span></label>
@@ -412,6 +533,7 @@ Qual funciona melhor para você?</div>
 
     <h3>Após cada contato — atualizar agenda</h3>
     <label class="chk"><input type="checkbox" data-c="n7"><span>Dados completos, observações, melhor horário, objeções, interesse e próximo follow-up</span></label>
+    <label class="chk"><input type="checkbox" data-c="n9"><span>Ficha do lead completa no CRM para todo lead qualificado do turno (aba Ficha)</span></label>
 
     <h3>20h — Encerramento</h3>
     <label class="chk"><input type="checkbox" data-c="n8"><span>Enviar o relatório do dia para a Dani (modelo abaixo)</span></label>
@@ -500,7 +622,9 @@ Observações:</div>
 <nav>
   <button class="on" data-p="pg-inicio"><span class="ico">⌂</span>Início</button>
   <button data-p="pg-ligacao"><span class="ico">☏</span>Ligação</button>
+  <button data-p="pg-ficha"><span class="ico">✎</span>Ficha do lead</button>
   <button data-p="pg-msgs"><span class="ico">✉</span>Mensagens</button>
+  <button data-p="pg-insta"><span class="ico">◉</span>Instagram</button>
   <button data-p="pg-obj"><span class="ico">⁇</span>Objeções</button>
   <button data-p="pg-rotina"><span class="ico">✓</span>Rotina</button>
   <button data-p="pg-guia"><span class="ico">▤</span>Guia</button>
@@ -548,6 +672,42 @@ document.getElementById('objSearch').addEventListener('input', e => {
     d.classList.toggle('hide', !hit);
   });
 });
+
+// ficha do lead — formulário
+const interWrap = document.getElementById('f-interesse');
+if (interWrap) {
+  interWrap.querySelectorAll('label').forEach(l => l.addEventListener('click', () => {
+    interWrap.querySelectorAll('label').forEach(x => x.classList.remove('on'));
+    l.classList.add('on');
+  }));
+  const fv = id => (document.getElementById(id).value || '').trim();
+  document.getElementById('fichaCopy').addEventListener('click', () => {
+    const sel = interWrap.querySelector('label.on');
+    const dt = new Date().toLocaleDateString('pt-BR');
+    const txt = 'FICHA DO LEAD — ' + dt + '\n\n' +
+      'Nome completo: ' + fv('f-nome') + '\n' +
+      'Data de nascimento: ' + fv('f-nasc') + '\n' +
+      'Estado onde mora: ' + fv('f-estado') + '\n' +
+      'Participa da decisão: ' + fv('f-decisor') + '\n' +
+      'Valor disposto a guardar por mês: ' + fv('f-valor') + '\n' +
+      'Maior interesse: ' + (sel ? sel.dataset.v : '') + '\n' +
+      'Perfil do cliente: ' + fv('f-perfil') + '\n' +
+      'Objeções apresentadas: ' + fv('f-obj') + '\n' +
+      'Próxima ação: ' + fv('f-acao');
+    const b = document.getElementById('fichaCopy');
+    const done = () => { b.classList.add('ok'); b.textContent = '✓ Ficha copiada';
+      toast('Ficha copiada — cole no CRM');
+      setTimeout(() => { b.classList.remove('ok'); b.textContent = '⧉ Copiar ficha preenchida'; }, 2000); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(done).catch(() => fallback(txt, done));
+    } else fallback(txt, done);
+  });
+  document.getElementById('fichaClear').addEventListener('click', () => {
+    ['f-nome','f-nasc','f-estado','f-decisor','f-valor','f-perfil','f-obj','f-acao']
+      .forEach(id => document.getElementById(id).value = '');
+    interWrap.querySelectorAll('label').forEach(x => x.classList.remove('on'));
+  });
+}
 
 // seletor de rotina (Isa / Ana / Troca)
 document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => {
